@@ -49,17 +49,17 @@ You need to define the authentication details using the **setApiCredentials** me
 
 Example:
 
-  $url = 'https://test.api.neteller.com/';
-  $clientId = 'AAAAAAAAAAAAAAAAA';
-  $clientSecret = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
-  
-  // Parent class
-  $api = new NetellerApi();
-  $api->setApiCredentials($url, $clientId, $clientSecret);
-  
-  // All other subclases
-  $createOrder = new CreateOrder();
-  $createOrder->setApiCredentials($url, $clientId, $clientSecret);
+    $url = 'https://test.api.neteller.com/';
+    $clientId = 'AAAAAAAAAAAAAAAAA';
+    $clientSecret = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+
+    // Parent class
+    $api = new NetellerApi();
+    $api->setApiCredentials($url, $clientId, $clientSecret);
+
+    // All other subclases
+    $createOrder = new CreateOrder();
+    $createOrder->setApiCredentials($url, $clientId, $clientSecret);
 
 Verbose Mode (cURL)
 
@@ -95,28 +95,27 @@ Example
 
 It can also be used in the context of a child class:
 
-
     use NetellerAPI\RequestPayment;
     
     $url = 'https://test.api.neteller.com/';
-  $clientId = 'AAAAAAAAAAAAAAAAA';
-  $clientSecret = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
-  
-  $deposit = new RequestPayment();
-  $deposit->setApiCredentials($url, $clientId, $clientSecret);
+    $clientId = 'AAAAAAAAAAAAAAAAA';
+    $clientSecret = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+
+    $deposit = new RequestPayment();
+    $deposit->setApiCredentials($url, $clientId, $clientSecret);
 
 
-    $deposit->setPaymentMethodValue('netellertest_USD@neteller.com')
-            ->setVerificationCode(270955)
-            ->setTransactionMerchantRefId('adfiu1i23478172349a')
-            ->setTransactionAmount(1234)
-            ->setTransactionCurrency('USD');
-  
-  $result = $deposit->doRequest();
-    $ip = $deposit->getIP();
+     $deposit->setPaymentMethodValue('netellertest_USD@neteller.com')
+              ->setVerificationCode(270955)
+              ->setTransactionMerchantRefId('adfiu1i23478172349a')
+              ->setTransactionAmount(1234)
+              ->setTransactionCurrency('USD');
 
-    var_dump($result);
-    var_dump($ip);
+    $result = $deposit->doRequest();
+      $ip = $deposit->getIP();
+
+      var_dump($result);
+      var_dump($ip);
 
 
 RequestPayment Class <a name="requestPayment"></a>
