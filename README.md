@@ -67,7 +67,7 @@ Enable or disable the cURL verbose mode using the **setVerbose** method.
 
 Example:
 
-  $api->setVerbose(true);
+    $api->setVerbose(true);
 
 NetellerAPI Class <a name="NetellerAPI"></a>
 ============================================
