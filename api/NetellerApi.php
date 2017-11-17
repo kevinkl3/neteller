@@ -1,11 +1,11 @@
 <?php
-namespace grandmasterx\neteller\api;
+namespace NetellerAPI;
 
 /**
- * Class NetellerApi
- * @package grandmasterx\neteller\api
+ * Class NetellerAPI
+ * @package NetellerAPI
  */
-class NetellerApi
+class NetellerAPI
 {
 
     /**
@@ -24,10 +24,22 @@ class NetellerApi
     public $clientSecret;
 
     /**
+     * @var
+     */
+    private $verbose = false;
+
+    /**
      * @return string
      */
     public function getIP() {
         return file_get_contents('http://whatismyip.akamai.com');
+    }
+
+    /**
+     * @param verboseEnabled
+     */
+    public function setVerbose($verboseEnabled) {
+        $this->verbose = $verboseEnabled;
     }
 
     /**
@@ -242,7 +254,7 @@ class NetellerApi
 
         //return the response headers
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, $this->verbose);
 
         //method && request params:
         switch (strtolower($method)) {

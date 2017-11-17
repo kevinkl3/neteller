@@ -1,11 +1,11 @@
 <?php
-namespace grandmasterx\neteller\api;
+namespace NetellerAPI;
 
 /**
  * Class LookupPlan
- * @package grandmasterx\neteller\api
+ * @package NetellerAPI
  */
-class LookupPlan extends NetellerApi
+class LookupPlan extends NetellerAPI
 {
     /**
      * @var

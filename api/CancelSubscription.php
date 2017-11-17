@@ -1,11 +1,11 @@
 <?php
-namespace grandmasterx\neteller\api;
+namespace NetellerAPI;
 
 /**
  * Class CancelSubscription
- * @package grandmasterx\neteller\api
+ * @package NetellerAPI
  */
-class CancelSubscription extends NetellerApi
+class CancelSubscription extends NetellerAPI
 {
     /**
      * @var

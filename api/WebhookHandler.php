@@ -1,11 +1,11 @@
 <?php
-namespace grandmasterx\neteller\api;
+namespace NetellerAPI;
 
 /**
  * Class WebhookHandler
- * @package grandmasterx\neteller\api
+ * @package NetellerAPI
  */
-class WebhookHandler extends NetellerApi
+class WebhookHandler extends NetellerAPI
 {
 
     /**

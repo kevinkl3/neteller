@@ -1,3 +1,5 @@
+NOTE: This is a fork from [GrandMasterX/neteller](https://github.com/GrandMasterX/neteller)
+
 NETELLER REST API PHP Library
 =============================
 
@@ -34,37 +36,38 @@ The NETELLER PHP Library provides PHP developers an easy way to integrate the NE
 
 Installation <a name="Installation"></a>
 ========================================
+To install this version:
+`composer require kevinkl3/neteller`
 
-Simply download and include the "NetellerAPI.php" file in your script.
-
-
-    include_once("NetellerAPI.php");
-
+To install original version:
+`composer require GrandMasterX/neteller`
 
 Configuration <a name="Configuration"></a>
 ==========================================
 
-You need to define the configuration details using the following PHP constants:
-
-- **NETELLER\_BASE\_URL** - should contain the relevant REST API endpoint depending on whether you are using the sandbox or live environment.
-- **NETELLER\_CLIENT\_ID** - should contain the Client ID from the merchant account App.
-- **NETELLER\_CLIENT\_SECRET** - should contain the Client Secret from the merchant account App.
+You need to define the authentication details using the **setApiCredentials** method.
 
 Example:
 
+  $url = 'https://test.api.neteller.com/';
+  $clientId = 'AAAAAAAAAAAAAAAAA';
+  $clientSecret = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+  
+  // Parent class
+  $api = new NetellerApi();
+  $api->setApiCredentials($url, $clientId, $clientSecret);
+  
+  // All other subclases
+  $createOrder = new CreateOrder();
+  $createOrder->setApiCredentials($url, $clientId, $clientSecret);
 
-    define('NETELLER_BASE_URL', 'https://test.api.neteller.com/');
-    define('NETELLER_CLIENT_ID', 'AAABTAiQ9pKruN2Z');
-    define('NETELLER_CLIENT_SECRET', '0.iSLQ7zzMinac6SbI62onxTdqEYFES1LXoI4paRFFz74.4yFz4Pr3BMIccXgQOb3Ea_FNG2Y');
+Verbose Mode (cURL)
 
-Alternatively, you may pass these required parameters to the constructor of each method instead:
+Enable or disable the cURL verbose mode using the **setVerbose** method.
 
-    $deposit = new NetellerAPI\RequestPayment(array(
-     'NETELLER_BASE_URL' => 'https://test.api.neteller.com/',
-     'NETELLER_CLIENT_ID' => 'AAABTAiQ9pKruN2Z',
-     'NETELLER_CLIENT_SECRET' => '0.iSLQ7zzMinac6SbI62onxTdqEYFES1LXoI4paRFFz74.4yFz4Pr3BMIccXgQOb3Ea_FNG2Y'
-     ));
-    .. etc etc
+Example:
+
+  $api->setVerbose(true);
 
 NetellerAPI Class <a name="NetellerAPI"></a>
 ============================================
@@ -83,9 +86,9 @@ Methods
 
 Example
 -------
-
-
-    $api = new NetellerAPI\NetellerAPI();
+  use NetellerAPI\NetellerAPI;
+  
+    $api = new NetellerApi();
     $ip = $api->getIP();
     var_dump($ip);
 
@@ -93,13 +96,23 @@ Example
 It can also be used in the context of a child class:
 
 
-    $deposit = new NetellerAPI\RequestPayment();
+    use NetellerAPI\RequestPayment;
+    
+    $url = 'https://test.api.neteller.com/';
+  $clientId = 'AAAAAAAAAAAAAAAAA';
+  $clientSecret = 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+  
+  $deposit = new RequestPayment();
+  $deposit->setApiCredentials($url, $clientId, $clientSecret);
+
+
     $deposit->setPaymentMethodValue('netellertest_USD@neteller.com')
             ->setVerificationCode(270955)
             ->setTransactionMerchantRefId('adfiu1i23478172349a')
             ->setTransactionAmount(1234)
             ->setTransactionCurrency('USD');
-    $result = $deposit->doRequest();
+  
+  $result = $deposit->doRequest();
     $ip = $deposit->getIP();
 
     var_dump($result);

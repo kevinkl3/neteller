@@ -1,11 +1,11 @@
 <?php
-namespace grandmasterx\neteller\api;
+namespace NetellerAPI;
 
 /**
  * Class RequestPayment
- * @package grandmasterx\neteller\api
+ * @package NetellerAPI
  */
-class RequestPayment extends NetellerApi
+class RequestPayment extends NetellerAPI
 {
 
     /**
